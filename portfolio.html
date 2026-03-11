@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Eng. Islam — Data Analyst & Python Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --cream: #FAF8F4;
+      --white: #FFFFFF;
+      --ink: #1A1814;
+      --ink-light: #4A4640;
+      --ink-muted: #8A8480;
+      --accent: #C8622A;
+      --accent-light: #F5E8DF;
+      --accent-mid: #E8A07A;
+      --border: #E8E4DE;
+      --card-bg: #FFFFFF;
+      --section-alt: #F5F2ED;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 5%;
+      background: rgba(250, 248, 244, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow 0.3s;
+    }
+    nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--ink-light);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      position: relative;
+      transition: color 0.2s;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute; bottom: -4px; left: 0; width: 0; height: 1.5px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a.active { color: var(--accent); }
+    .nav-links a.active::after { width: 100%; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 8rem 5% 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg-shape {
+      position: absolute; top: -100px; right: -200px;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--accent-light) 0%, transparent 70%);
+      opacity: 0.6;
+      pointer-events: none;
+    }
+    .hero-bg-dots {
+      position: absolute; bottom: 0; left: 0;
+      width: 300px; height: 300px;
+      background-image: radial-gradient(circle, var(--border) 1.5px, transparent 1.5px);
+      background-size: 22px 22px;
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative; z-index: 1;
+      max-width: 800px;
+    }
+
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--accent-light);
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      border-radius: 2rem;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.6s ease both;
+    }
+    .hero-tag::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 900;
+      line-height: 1;
+      color: var(--ink);
+      letter-spacing: -0.03em;
+      margin-bottom: 0.5rem;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+    .hero-name .accent-word { color: var(--accent); }
+
+    .hero-title {
+      font-family: 'DM Mono', monospace;
+      font-size: clamp(0.85rem, 2vw, 1.1rem);
+      color: var(--ink-muted);
+      letter-spacing: 0.05em;
+      margin-bottom: 2rem;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    .hero-desc {
+      font-size: 1.1rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--ink-light);
+      max-width: 560px;
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+
+    .hero-cta {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      animation: fadeUp 0.6s 0.4s ease both;
+    }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--ink);
+      color: white;
+      padding: 0.85rem 2rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--accent); transform: translateY(-2px); }
+
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: transparent;
+      color: var(--ink);
+      padding: 0.85rem 2rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border: 1.5px solid var(--border);
+      transition: border-color 0.2s, color 0.2s, transform 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+    .hero-stats {
+      display: flex; gap: 3rem;
+      margin-top: 4rem;
+      padding-top: 3rem;
+      border-top: 1px solid var(--border);
+      animation: fadeUp 0.6s 0.5s ease both;
+    }
+    .stat-item {}
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .stat-num span { color: var(--accent); }
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-top: 0.2rem;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── SECTION COMMON ── */
+    section { padding: 6rem 5%; }
+    .section-label {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .section-label::before {
+      content: '';
+      width: 32px; height: 1.5px;
+      background: var(--accent);
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    .section-subtitle {
+      font-size: 1rem;
+      color: var(--ink-muted);
+      max-width: 500px;
+      line-height: 1.7;
+    }
+
+    /* ── ABOUT ── */
+    #about { background: var(--section-alt); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      margin-top: 3rem;
+    }
+
+    .about-text p {
+      font-size: 1rem;
+      line-height: 1.9;
+      color: var(--ink-light);
+      margin-bottom: 1.2rem;
+    }
+    .about-text p strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .about-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 2.5rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.04);
+    }
+    .about-card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: var(--ink);
+    }
+    .tool-list {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+    }
+    .tool-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      padding: 0.35rem 0.8rem;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      color: var(--ink-light);
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .tool-tag:hover { background: var(--accent-light); border-color: var(--accent-mid); color: var(--accent); }
+
+    /* ── PROJECTS ── */
+    #projects { background: var(--cream); }
+
+    .projects-header {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 2rem;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+    }
+
+    .card-visual {
+      height: 220px;
+      position: relative;
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* Card 1 – Web Scraping */
+    .card-visual.scraping {
+      background: linear-gradient(135deg, #1E1B2E 0%, #2D2A3E 100%);
+    }
+    .code-window {
+      width: 90%; background: #16131F;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+    }
+    .code-window-bar {
+      display: flex; align-items: center; gap: 6px;
+      padding: 8px 12px;
+      background: #1F1C2D;
+    }
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot.red { background: #FF5F57; }
+    .dot.yellow { background: #FFBD2E; }
+    .dot.green { background: #28C940; }
+    .code-body {
+      padding: 12px 14px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      line-height: 1.7;
+    }
+    .kw { color: #FF79C6; }
+    .fn { color: #50FA7B; }
+    .str { color: #F1FA8C; }
+    .cm { color: #6272A4; }
+    .tag { color: #8BE9FD; }
+
+    /* Card 2 – Analytics */
+    .card-visual.analytics {
+      background: linear-gradient(135deg, #F8F4EE 0%, #EDE8E0 100%);
+      flex-direction: column;
+      gap: 12px;
+      padding: 1.5rem;
+    }
+    .chart-bars {
+      display: flex; align-items: flex-end; gap: 6px;
+      height: 100px; width: 100%;
+      padding: 0 1rem;
+    }
+    .bar {
+      flex: 1;
+      border-radius: 4px 4px 0 0;
+      background: var(--accent);
+      opacity: 0.85;
+      transition: opacity 0.2s;
+      animation: growBar 1s ease both;
+    }
+    .bar:nth-child(2) { background: var(--accent-mid); animation-delay: 0.1s; }
+    .bar:nth-child(3) { background: var(--accent); animation-delay: 0.2s; }
+    .bar:nth-child(4) { background: var(--accent-mid); animation-delay: 0.3s; }
+    .bar:nth-child(5) { background: var(--accent); animation-delay: 0.4s; }
+    .bar:nth-child(6) { background: var(--accent-mid); animation-delay: 0.5s; }
+    @keyframes growBar {
+      from { height: 0 !important; }
+      to   { }
+    }
+    .chart-line-wrap {
+      width: 100%; position: relative; height: 40px;
+    }
+    .chart-line {
+      width: 100%;
+      stroke: var(--accent);
+      stroke-width: 2;
+      fill: none;
+      stroke-dasharray: 300;
+      stroke-dashoffset: 300;
+      animation: drawLine 1.5s ease forwards 0.5s;
+    }
+    @keyframes drawLine {
+      to { stroke-dashoffset: 0; }
+    }
+
+    /* Card 3 – BI */
+    .card-visual.bi {
+      background: linear-gradient(135deg, #F0EBE3 0%, #E8E1D8 100%);
+      padding: 1.5rem;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .bi-dashboard {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 8px;
+    }
+    .bi-kpi {
+      background: white;
+      border-radius: 8px;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+    }
+    .bi-kpi-label { font-size: 0.58rem; color: var(--ink-muted); font-family: 'DM Mono', monospace; text-transform: uppercase; }
+    .bi-kpi-value { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--ink); }
+    .bi-kpi-value span { color: var(--accent); font-size: 0.7rem; }
+    .bi-chart-box {
+      background: white;
+      border-radius: 8px;
+      padding: 10px;
+      border: 1px solid var(--border);
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .bi-donut {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: conic-gradient(var(--accent) 0deg 150deg, var(--accent-mid) 150deg 240deg, var(--border) 240deg 360deg);
+      position: relative;
+    }
+    .bi-donut::after {
+      content: '';
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 26px; height: 26px;
+      background: white;
+      border-radius: 50%;
+    }
+    .bi-legend { font-size: 0.6rem; color: var(--ink-muted); font-family: 'DM Mono', monospace; line-height: 1.8; }
+    .bi-legend span { display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 4px; vertical-align: middle; }
+
+    /* Card body */
+    .card-body { padding: 1.75rem; }
+    .card-category {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.75rem;
+      line-height: 1.3;
+    }
+    .card-desc {
+      font-size: 0.875rem;
+      line-height: 1.7;
+      color: var(--ink-light);
+      margin-bottom: 1.25rem;
+    }
+    .card-tags {
+      display: flex; flex-wrap: wrap; gap: 0.4rem;
+    }
+    .card-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      padding: 0.25rem 0.6rem;
+      background: var(--accent-light);
+      color: var(--accent);
+      border-radius: 3px;
+    }
+
+    /* ── SKILLS ── */
+    #skills { background: var(--section-alt); }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .skill-group {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 2rem;
+      border: 1px solid var(--border);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .skill-group:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.07); }
+
+    .skill-group-icon {
+      font-size: 1.75rem;
+      margin-bottom: 0.75rem;
+    }
+    .skill-group-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.25rem;
+    }
+    .skill-group-sub {
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .skill-bars { display: flex; flex-direction: column; gap: 0.9rem; }
+    .skill-row {}
+    .skill-row-top {
+      display: flex; justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--ink-light);
+      margin-bottom: 0.35rem;
+    }
+    .skill-row-top span:last-child {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+    }
+    .skill-bar-track {
+      height: 5px;
+      background: var(--cream);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .skill-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent) 0%, var(--accent-mid) 100%);
+      border-radius: 10px;
+      width: 0;
+      transition: width 1.2s ease;
+    }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--ink); }
+    #contact .section-label { color: var(--accent-mid); }
+    #contact .section-label::before { background: var(--accent-mid); }
+    #contact .section-title { color: var(--white); }
+    #contact .section-subtitle { color: rgba(255,255,255,0.5); max-width: 440px; }
+
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+      margin-top: 3rem;
+    }
+
+    .contact-info { }
+    .contact-item {
+      display: flex; align-items: flex-start; gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .contact-icon {
+      width: 44px; height: 44px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.07);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .contact-item-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.35);
+      font-family: 'DM Mono', monospace;
+      margin-bottom: 0.3rem;
+    }
+    .contact-item-value {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.85);
+      font-weight: 500;
+    }
+    .contact-item-value a { color: inherit; text-decoration: none; }
+    .contact-item-value a:hover { color: var(--accent-mid); }
+
+    .contact-form { }
+    .form-group { margin-bottom: 1.25rem; }
+    .form-label {
+      display: block;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.04em;
+    }
+    .form-input, .form-textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 6px;
+      padding: 0.85rem 1rem;
+      color: white;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .form-input::placeholder, .form-textarea::placeholder {
+      color: rgba(255,255,255,0.25);
+    }
+    .form-input:focus, .form-textarea:focus {
+      border-color: var(--accent-mid);
+      background: rgba(255,255,255,0.09);
+    }
+    .form-textarea { min-height: 120px; resize: vertical; }
+    .btn-send {
+      width: 100%;
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 1rem;
+      border-radius: 6px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      letter-spacing: 0.03em;
+      transition: background 0.2s, transform 0.2s;
+      margin-top: 0.5rem;
+    }
+    .btn-send:hover { background: #B55520; transform: translateY(-2px); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #110F0C;
+      padding: 2.5rem 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.6);
+    }
+    .footer-logo span { color: var(--accent); }
+    .footer-copy {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.25);
+      font-family: 'DM Mono', monospace;
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .about-grid, .contact-wrapper { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hero-stats { gap: 2rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">Eng.<span>Islam</span></a>
+  <ul class="nav-links">
+    <li><a href="#about"    class="nav-link" data-target="about">About</a></li>
+    <li><a href="#projects" class="nav-link" data-target="projects">Projects</a></li>
+    <li><a href="#skills"   class="nav-link" data-target="skills">Skills</a></li>
+    <li><a href="#contact"  class="nav-link" data-target="contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-shape"></div>
+  <div class="hero-bg-dots"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Available for Freelance Work</div>
+    <h1 class="hero-name">Eng.<br/><span class="accent-word">Islam</span></h1>
+    <p class="hero-title">// Freelance Data Analyst &amp; Python Developer</p>
+    <p class="hero-desc">
+      I turn raw data into clear business insights. From automated web scraping pipelines 
+      to interactive dashboards — I build tools that help businesses make smarter decisions.
+    </p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn-primary">View My Work ↓</a>
+      <a href="#contact" class="btn-secondary">Get In Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">3<span>+</span></div>
+        <div class="stat-label">Projects Delivered</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">5<span>+</span></div>
+        <div class="stat-label">Tools & Libraries</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">100<span>%</span></div>
+        <div class="stat-label">Satisfaction Focus</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">About Me</div>
+  <h2 class="section-title">Turning Data Into<br/>Decisions</h2>
+
+  <div class="about-grid reveal">
+    <div class="about-text">
+      <p>
+        Hello! I'm <strong>Eng. Islam</strong>, a freelance Data Analyst and Python developer 
+        passionate about transforming complex datasets into actionable business intelligence.
+      </p>
+      <p>
+        My work spans the full data lifecycle — from <strong>automated data collection</strong> 
+        via web scraping, through <strong>statistical analysis</strong> and modelling, 
+        all the way to polished <strong>visual dashboards</strong> that tell a story at a glance.
+      </p>
+      <p>
+        Whether you need a one-time analysis or an ongoing automated pipeline, 
+        I deliver clean, documented, production-ready solutions that your team can trust.
+      </p>
+    </div>
+    <div class="about-card">
+      <div class="about-card-title">Tech Stack &amp; Tools</div>
+      <div class="tool-list">
+        <span class="tool-tag">Python</span>
+        <span class="tool-tag">Pandas</span>
+        <span class="tool-tag">NumPy</span>
+        <span class="tool-tag">SciPy</span>
+        <span class="tool-tag">BeautifulSoup</span>
+        <span class="tool-tag">Matplotlib</span>
+        <span class="tool-tag">Seaborn</span>
+        <span class="tool-tag">Power BI</span>
+        <span class="tool-tag">Excel</span>
+        <span class="tool-tag">SQL</span>
+        <span class="tool-tag">VS Code</span>
+        <span class="tool-tag">Git</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="projects-header reveal">
+    <div>
+      <div class="section-label">Portfolio</div>
+      <h2 class="section-title">Featured Projects</h2>
+    </div>
+    <p class="section-subtitle">Real-world data challenges solved with clean, efficient Python.</p>
+  </div>
+
+  <div class="projects-grid">
+
+    <!-- Card 1: Web Scraping -->
+    <div class="project-card reveal">
+      <div class="card-visual scraping">
+        <div class="code-window">
+          <div class="code-window-bar">
+            <div class="dot red"></div>
+            <div class="dot yellow"></div>
+            <div class="dot green"></div>
+          </div>
+          <div class="code-body">
+            <span class="kw">import</span> <span class="tag">requests</span><br/>
+            <span class="kw">from</span> <span class="tag">bs4</span> <span class="kw">import</span> <span class="fn">BeautifulSoup</span><br/>
+            <span class="cm"># Scrape product prices</span><br/>
+            <span class="fn">url</span> = <span class="str">"https://shop.example.com"</span><br/>
+            <span class="fn">soup</span> = <span class="fn">BeautifulSoup</span>(<span class="fn">res</span>.text)<br/>
+            <span class="fn">prices</span> = <span class="fn">soup</span>.<span class="fn">find_all</span>(<span class="str">"span.price"</span>)<br/>
+            <span class="fn">df</span>.<span class="fn">to_csv</span>(<span class="str">"output.csv"</span>)
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-category">Web Scraping</div>
+        <h3 class="card-title">Automated Data Collection Pipeline</h3>
+        <p class="card-desc">
+          Built intelligent scrapers to extract product data and pricing from e-commerce sites, 
+          transforming raw HTML into clean, structured CSV datasets ready for analysis.
+        </p>
+        <div class="card-tags">
+          <span class="card-tag">Python</span>
+          <span class="card-tag">BeautifulSoup</span>
+          <span class="card-tag">Pandas</span>
+          <span class="card-tag">HTML</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2: Sales Analysis -->
+    <div class="project-card reveal">
+      <div class="card-visual analytics">
+        <div class="chart-bars">
+          <div class="bar" style="height:55%"></div>
+          <div class="bar" style="height:75%"></div>
+          <div class="bar" style="height:45%"></div>
+          <div class="bar" style="height:90%"></div>
+          <div class="bar" style="height:65%"></div>
+          <div class="bar" style="height:80%"></div>
+          <div class="bar" style="height:55%"></div>
+        </div>
+        <div class="chart-line-wrap">
+          <svg viewBox="0 0 300 40" width="100%" height="40">
+            <polyline class="chart-line" points="0,35 40,25 80,30 120,10 160,18 200,8 240,14 300,5"/>
+          </svg>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-category">Statistical Analysis</div>
+        <h3 class="card-title">Sales Performance Analytics</h3>
+        <p class="card-desc">
+          Analysed multi-variable sales datasets to uncover trends, price-rating correlations, 
+          and performance indicators — visualised as interactive charts for stakeholder reporting.
+        </p>
+        <div class="card-tags">
+          <span class="card-tag">Python</span>
+          <span class="card-tag">NumPy</span>
+          <span class="card-tag">SciPy</span>
+          <span class="card-tag">Seaborn</span>
+          <span class="card-tag">Matplotlib</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3: BI & Visualization -->
+    <div class="project-card reveal">
+      <div class="card-visual bi">
+        <div class="bi-dashboard">
+          <div class="bi-kpi">
+            <div class="bi-kpi-label">Revenue</div>
+            <div class="bi-kpi-value">$84K <span>↑12%</span></div>
+          </div>
+          <div class="bi-kpi">
+            <div class="bi-kpi-label">Conversion</div>
+            <div class="bi-kpi-value">4.7% <span>↑0.3%</span></div>
+          </div>
+          <div class="bi-chart-box">
+            <div class="bi-donut"></div>
+            <div class="bi-legend">
+              <div><span style="background:var(--accent)"></span>Direct Sales 42%</div>
+              <div><span style="background:var(--accent-mid)"></span>Online 25%</div>
+              <div><span style="background:var(--border)"></span>Other 33%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-category">BI &amp; Visualization</div>
+        <h3 class="card-title">Business Intelligence Dashboard</h3>
+        <p class="card-desc">
+          Designed comprehensive BI reports combining Power BI, advanced Excel, and Python 
+          visualisations — giving decision-makers a clear, real-time view of business performance.
+        </p>
+        <div class="card-tags">
+          <span class="card-tag">Power BI</span>
+          <span class="card-tag">Excel</span>
+          <span class="card-tag">SQL</span>
+          <span class="card-tag">Python</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">Expertise</div>
+  <h2 class="section-title">Core Skills</h2>
+  <p class="section-subtitle">A full-stack data toolkit — from extraction to presentation.</p>
+
+  <div class="skills-grid">
+
+    <div class="skill-group reveal">
+      <div class="skill-group-icon">🐍</div>
+      <div class="skill-group-title">Python Development</div>
+      <div class="skill-group-sub">Core language for all data work</div>
+      <div class="skill-bars">
+        <div class="skill-row">
+          <div class="skill-row-top"><span>Python (Core)</span><span>90%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-row-top"><span>Pandas / NumPy</span><span>85%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-row-top"><span>BeautifulSoup</span><span>88%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="88"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="skill-group reveal">
+      <div class="skill-group-icon">📊</div>
+      <div class="skill-group-title">Data Analysis</div>
+      <div class="skill-group-sub">Statistical modelling &amp; insight</div>
+      <div class="skill-bars">
+        <div class="skill-row">
+          <div class="skill-row-top"><span>Statistical Analysis</span><span>82%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="82"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-row-top"><span>SciPy</span><span>78%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="78"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-row-top"><span>Data Cleaning</span><span>92%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="92"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="skill-group reveal">
+      <div class="skill-group-icon">📈</div>
+      <div class="skill-group-title">Visualization &amp; BI</div>
+      <div class="skill-group-sub">Charts, dashboards &amp; reports</div>
+      <div class="skill-bars">
+        <div class="skill-row">
+          <div class="skill-row-top"><span>Power BI</span><span>80%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="80"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-row-top"><span>Matplotlib / Seaborn</span><span>87%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="87"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-row-top"><span>Excel Advanced</span><span>85%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Hire Me</div>
+  <h2 class="section-title">Let's Work Together</h2>
+  <p class="section-subtitle">Have a data challenge? Let's discuss how I can help your business grow.</p>
+
+  <div class="contact-wrapper reveal">
+    <div class="contact-info">
+      <div class="contact-item">
+        <div class="contact-icon">✉️</div>
+        <div>
+          <div class="contact-item-label">Email</div>
+          <div class="contact-item-value">
+            <a href="mailto:islam.al.imam10@gmail.com">islam.al.imam10@gmail.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">💼</div>
+        <div>
+          <div class="contact-item-label">Freelance Platforms</div>
+          <div class="contact-item-value">Upwork · Freelancer</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">🔗</div>
+        <div>
+          <div class="contact-item-label">LinkedIn</div>
+          <div class="contact-item-value">
+            <a href="https://www.linkedin.com/in/islam-mohamed-imam" target="_blank" rel="noopener">linkedin.com/in/islam-mohamed-imam</a>
+          </div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">🐙</div>
+        <div>
+          <div class="contact-item-label">GitHub</div>
+          <div class="contact-item-value">
+            <a href="https://github.com/islamXimam" target="_blank" rel="noopener">github.com/islamXimam</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <div id="form-success" style="display:none; background:rgba(40,201,64,0.12); border:1px solid #28C940; border-radius:8px; padding:1.2rem 1.5rem; color:#28C940; font-size:0.95rem; margin-bottom:1rem;">
+        ✅ Message sent successfully! I'll get back to you soon.
+      </div>
+      <div id="form-error" style="display:none; background:rgba(255,95,87,0.12); border:1px solid #FF5F57; border-radius:8px; padding:1.2rem 1.5rem; color:#FF5F57; font-size:0.95rem; margin-bottom:1rem;">
+        ❌ Something went wrong. Please email me directly at islam.al.imam10@gmail.com
+      </div>
+      <div class="form-group">
+        <label class="form-label">Your Name</label>
+        <input type="text" id="sender-name" class="form-input" placeholder="NAME" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <input type="email" id="sender-email" class="form-input" placeholder="Enter your email" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Tell me about your project</label>
+        <textarea id="sender-message" class="form-textarea" placeholder="I need help with..."></textarea>
+      </div>
+      <button class="btn-send" id="send-btn" onclick="sendMessage()">
+        Send Message →
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Eng.<span>Islam</span></div>
+  <div class="footer-copy">© 2025 · Freelance Data Analyst &amp; Python Developer</div>
+</footer>
+
+<script>
+  // Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Smooth scroll for nav links
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('data-target');
+      const target   = document.getElementById(targetId);
+      if (!target) return;
+      const navHeight = navbar.offsetHeight;
+      const top = target.getBoundingClientRect().top + window.scrollY - navHeight;
+      window.scrollTo({ top, behavior: 'smooth' });
+    });
+  });
+
+  // Also handle hero logo click
+  document.querySelector('.nav-logo').addEventListener('click', function(e) {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // Active nav link on scroll
+  const sections = ['about','projects','skills','contact'];
+  const navLinks  = document.querySelectorAll('.nav-link');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(id => {
+      const sec = document.getElementById(id);
+      if (sec && window.scrollY >= sec.offsetTop - navbar.offsetHeight - 60) {
+        current = id;
+      }
+    });
+    navLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('data-target') === current);
+    });
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Skill bars animation
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+          bar.style.width = bar.dataset.width + '%';
+        });
+        barObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.skill-group').forEach(g => barObserver.observe(g));
+
+  // Send message via FormSubmit
+  async function sendMessage() {
+    const name    = document.getElementById('sender-name').value.trim();
+    const email   = document.getElementById('sender-email').value.trim();
+    const message = document.getElementById('sender-message').value.trim();
+    const btn     = document.getElementById('send-btn');
+    const success = document.getElementById('form-success');
+    const error   = document.getElementById('form-error');
+
+    success.style.display = 'none';
+    error.style.display   = 'none';
+
+    if (!name || !email || !message) {
+      error.textContent = '⚠️ Please fill in all fields before sending.';
+      error.style.display = 'block';
+      return;
+    }
+
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    try {
+      const res = await fetch('https://formsubmit.co/ajax/islam.al.imam10@gmail.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          name,
+          email,
+          message,
+          _subject: `New Portfolio Message from ${name}`,
+          _captcha: 'false'
+        })
+      });
+      const data = await res.json();
+      if (data.success === 'true' || data.success === true) {
+        success.style.display = 'block';
+        document.getElementById('sender-name').value    = '';
+        document.getElementById('sender-email').value   = '';
+        document.getElementById('sender-message').value = '';
+      } else {
+        error.textContent = '❌ Something went wrong. Please email me directly at islam.al.imam10@gmail.com';
+        error.style.display = 'block';
+      }
+    } catch(e) {
+      error.textContent = '❌ Network error. Please email me directly at islam.al.imam10@gmail.com';
+      error.style.display = 'block';
+    }
+
+    btn.textContent = 'Send Message →';
+    btn.disabled = false;
+  }
+</script>
+
+</body>
+</html>
